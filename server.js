@@ -19,6 +19,9 @@ app.post('/update', function (req, res) {
     updateWater(water, id);
 });
 
+app.get('/', function (req, res) {
+    res.json({"status": "ok"})
+})
 app.listen(20000, function() {
     console.log("Server start on " + 20000);
 });
