@@ -1,9 +1,9 @@
-var express =  require('express');
+var express = require('express');
 var pg = require('pg');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
@@ -19,10 +19,17 @@ app.post('/update', function (req, res) {
     updateWater(water, id);
 });
 
+app.post('/reset', function (req, res) {
+    var bottle = req.body.bottleId;
+    client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, bottle], function (a, b) {
+        done();
+    });
+});
+
 app.get('/', function (req, res) {
     res.json({"status": "ok"})
 })
-app.listen(20000, function() {
+app.listen(20000, function () {
     console.log("Server start on " + 20000);
 });
 
@@ -41,7 +48,7 @@ var updateWater = function (water, bottleId) {
             var user_id = row.user_id;
             var name = row.name;
             water_left -= water; //вычитаем полученную воду
-            client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [water_left, bottleId], function (a,b ) {
+            client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [water_left, bottleId], function (a, b) {
                 console.log(a, b);
                 done();
             });
