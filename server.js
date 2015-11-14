@@ -41,7 +41,8 @@ var updateWater = function (water, bottleId) {
             var user_id = row.user_id;
             var name = row.name;
             water_left -= water; //вычитаем полученную воду
-            client.query('UPDATE \"bottles\" set water_left = ($1)', water_left, function () {
+            client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [water_left, bottleId], function (a,b ) {
+                console.log(a, b);
                 done();
             });
             updateUserStats(user_id);
