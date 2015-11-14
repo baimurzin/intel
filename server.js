@@ -15,6 +15,7 @@ var DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/water';
 app.post('/update', function (req, res) {
     var water = req.body.water;
     var id = req.body.bottleId;
+    console.log(water, id);
     updateWater(water, id);
 });
 
