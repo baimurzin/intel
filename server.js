@@ -33,7 +33,7 @@ var updateWater = function (water, bottleId) {
         }
 
 
-        var query = client.first('SELECT * FROM \"bottles\" WHERE id = ($1)', [bottleId]);
+        var query = client.query('SELECT * FROM \"bottles\" WHERE id = ($1)', [bottleId]);
 
         query.on('row', function (row) {
             var water_left = row.water_left;
