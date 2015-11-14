@@ -21,9 +21,14 @@ app.post('/update', function (req, res) {
 
 app.post('/reset', function (req, res) {
     var bottle = req.body.bottleId;
-    client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, bottle], function (a, b) {
-        done();
-    });
+    pg.connect(DATABASE_URL, function (err, client, done) {
+        if (err) {
+            console.log(err);
+        }
+        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, bottle], function (a, b) {
+            done();
+        });
+    })
 });
 
 app.get('/', function (req, res) {
