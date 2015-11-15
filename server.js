@@ -101,7 +101,7 @@ var updateWater = function (water, bottleId) {
             water_left -= water; //вычитаем полученную воду
             console.log(water_left + " ОСталось воды");
             if (water_left < 1000) {
-                new call();
+                new call('790502231602');
                 console.log("WATER ACHTUNG < 1000");
                 request.post('http://localhost/water_request').form({"id": bottleId});
                 return;
