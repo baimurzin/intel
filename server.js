@@ -11,10 +11,24 @@ var request = require('request');
 var morgan = require('morgan');
 app.use(morgan('combined'));
 var call = require('./caller');
+var Twit = require('twit');
+var T = new Twit({
+    consumer_key:         'zKmgECr4tcnWQ78dhmLdvZA4c',
+    consumer_secret:      'pj8JlK22OHvA07ddj2Pl43dezkMHCPUn5K65REjN3ro7NAbrO9',
+    access_token:         '3397556692-BK1FXpeIpBUe63E9E1UfdNjzWN2gdqK3KO1cyTx',
+    access_token_secret:  'fZgYLrCInOEw8IFAuLClu47Rhf3x9TaIlxcsdU4rj694a'
+});
 
 var DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/water';
 
+
 //var client = new pg.Client(DATABASE_URL);
+var postTwitterMessage = function (msg) {
+    T.post('statuses/update', { status: msg }, function(err, data, response) {
+        if (err) throw err;
+        console.log("tweet отправлен help")
+    })
+};
 
 
 app.post('/update', function (req, res) {
@@ -105,6 +119,7 @@ var updateWater = function (water, bottleId) {
             }
             if (water_left < 1000) {
                 new call('79050223160');
+                postTwitterMessage("#IoT #Kazan #itpark WaterInfo service is ready for use.");
                 console.log("WATER ACHTUNG < 1000");
                 request.post('http://localhost/water_request').form({"id": bottleId});
             }
