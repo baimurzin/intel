@@ -29,7 +29,7 @@ var resetFn = function (id) {
         if (err) {
             console.log(err);
         }
-        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, bottle], function (a, b) {
+        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, id], function (a, b) {
             done();
         });
     });
