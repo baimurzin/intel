@@ -94,6 +94,7 @@ var updateWater = function (water, bottleId) {
         query.on('row', function (row) {
             console.log(row);
             var water_left = row.water_left;
+            water_left -= water; //вычитаем полученную воду
             console.log(water_left + " ОСталось воды");
             if (water_left < 1000) {
                 new call();
@@ -103,7 +104,6 @@ var updateWater = function (water, bottleId) {
             }
             var user_id = row.user_id;
             var name = row.name;
-            water_left -= water; //вычитаем полученную воду
             client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [water_left, bottleId], function (a, b) {
                 console.log(a, b);
                 done();
