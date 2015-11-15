@@ -24,7 +24,7 @@ app.post('/update', function (req, res) {
 });
 var resetFn = function (id) {
     console.log("reset bottle with id :" + id);
-    request.post('http://localhost/water_request').form({"id" : id});
+    request.post('http://localhost/water_request').form({"id": id});
     pg.connect(DATABASE_URL, function (err, client, done) {
         if (err) {
             console.log(err);
@@ -69,9 +69,7 @@ app.post('/', function (req, res) {
     } else {
         //nothing
         res.json(203);
-        return;
     }
-    res.json({"status": "ok"})
 });
 
 
@@ -98,7 +96,7 @@ var updateWater = function (water, bottleId) {
             var water_left = row.water_left;
             if (water_left < 1000) {
                 console.log("WATER ACHTUNG < 1000");
-                request.post('http://localhost/water_request').form({"id" : bottleId});
+                request.post('http://localhost/water_request').form({"id": bottleId});
                 return;
             }
             var user_id = row.user_id;
