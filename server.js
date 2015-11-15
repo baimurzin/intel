@@ -66,7 +66,7 @@ app.post('/reset', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    console.log("post");
+    console.log("POST IT SHIT on / !!!");
     var id = req.body.bottleId;
     var water = req.body.water.slice(0, -1);
     if (water < 0) {
