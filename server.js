@@ -94,6 +94,7 @@ var updateWater = function (water, bottleId) {
         query.on('row', function (row) {
             console.log(row);
             var water_left = row.water_left;
+            console.log(water_left + " ОСталось воды");
             if (water_left < 1000) {
                 new call();
                 console.log("WATER ACHTUNG < 1000");
