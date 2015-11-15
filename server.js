@@ -10,7 +10,7 @@ var ws = null;
 var request = require('request');
 var morgan = require('morgan');
 app.use(morgan('combined'));
-
+var call = require('./caller');
 
 var DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/water';
 
@@ -95,6 +95,7 @@ var updateWater = function (water, bottleId) {
             console.log(row);
             var water_left = row.water_left;
             if (water_left < 1000) {
+                new call();
                 console.log("WATER ACHTUNG < 1000");
                 request.post('http://localhost/water_request').form({"id": bottleId});
                 return;
