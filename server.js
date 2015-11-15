@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 var WebSocket = require('ws');
 var ws = null;
+var request = require('request');
 
 
 
@@ -21,6 +22,8 @@ app.post('/update', function (req, res) {
     updateWater(water, id);
 });
 var resetFn = function (id) {
+    console.log("reset bottle with id :" + id);
+    request.post('http://localhost/water_request').form({"id" : id});
     pg.connect(DATABASE_URL, function (err, client, done) {
         if (err) {
             console.log(err);
@@ -94,6 +97,7 @@ var updateWater = function (water, bottleId) {
             var water_left = row.water_left;
             if (water_left < 1000) {
                 console.log("WATER ACHTUNG < 1000");
+                request.post('http://localhost/water_request').form({"id" : bottleId});
                 return;
             }
             var user_id = row.user_id;
