@@ -43,7 +43,7 @@ var resetFn = function (id) {
         if (err) {
             console.log(err);
         }
-        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, id], function (a, b) {
+        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [5000, id], function (a, b) {
             done();
         });
     });
@@ -57,7 +57,7 @@ app.post('/reset', function (req, res) {
         if (err) {
             console.log(err);
         }
-        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [15000, bottle], function (a, b) {
+        client.query('UPDATE \"bottles\" set water_left = ($1) where id = ($2)', [5000, bottle], function (a, b) {
             done();
         });
     });
