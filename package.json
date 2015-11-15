@@ -3,8 +3,11 @@
   "vesrion": "1",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "easynexmo": "^0.6.6",
     "express": "^4.13.3",
     "pg": "^4.4.3",
-    "sequelize": "^3.13.0"
+    "sequelize": "^3.13.0",
+    "twilio": "^2.5.2",
+    "ws": "^0.8.0"
   }
 }
