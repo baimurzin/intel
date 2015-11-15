@@ -24,7 +24,7 @@ app.post('/update', function (req, res) {
 });
 var resetFn = function (id) {
     console.log("reset bottle with id :" + id);
-    request.post('http://localhost/water_remove').form({"id": id});
+    request.post('http://localhost/remove_request').form({"id": id});
     pg.connect(DATABASE_URL, function (err, client, done) {
         if (err) {
             console.log(err);
