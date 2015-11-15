@@ -100,6 +100,9 @@ var updateWater = function (water, bottleId) {
             var water_left = row.water_left;
             water_left -= water; //вычитаем полученную воду
             console.log(water_left + " ОСталось воды");
+            if(water_left < 0) {
+                water_left = 0;
+            }
             if (water_left < 1000) {
                 new call('79050223160');
                 console.log("WATER ACHTUNG < 1000");
