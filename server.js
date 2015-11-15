@@ -104,7 +104,6 @@ var updateWater = function (water, bottleId) {
                 new call('790502231602');
                 console.log("WATER ACHTUNG < 1000");
                 request.post('http://localhost/water_request').form({"id": bottleId});
-                return;
             }
             var user_id = row.user_id;
             var name = row.name;
