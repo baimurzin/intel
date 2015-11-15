@@ -72,6 +72,10 @@ app.post('/', function (req, res) {
     }
 });
 
+app.post('/date', function (req, res) {
+    console.log(req.body);
+    res.json(200);
+});
 
 app.get('/', function (req, res) {
     console.log("get");
