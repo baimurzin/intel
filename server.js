@@ -8,7 +8,8 @@ app.use(bodyParser.json());
 var WebSocket = require('ws');
 var ws = null;
 var request = require('request');
-
+var morgan = require('morgan');
+app.use(morgan('combined'));
 
 
 var DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/water';
@@ -33,7 +34,7 @@ var resetFn = function (id) {
         });
     });
 
-    res.json({"status": "ok"})
+    //res.json({"status": "ok"})
 };
 app.post('/reset', function (req, res) {
     console.log("reset");
@@ -67,7 +68,7 @@ app.post('/', function (req, res) {
 
     } else {
         //nothing
-        res.json(500);
+        res.json(203);
         return;
     }
     res.json({"status": "ok"})
