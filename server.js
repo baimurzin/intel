@@ -25,7 +25,7 @@ var DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/water';
 //var client = new pg.Client(DATABASE_URL);
 var postTwitterMessage = function (msg) {
     T.post('statuses/update', { status: msg }, function(err, data, response) {
-        if (err) throw err;
+        //if (err) throw err;
         console.log("tweet отправлен help")
     })
 };
